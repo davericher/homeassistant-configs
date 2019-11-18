@@ -1,0 +1,242 @@
+# Includes
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  expose_by_default: false
+  api_key: !secret google_travel
+  exposed_domains:
+    - switch
+    - scene
+    - light
+    - script
+    - input_boolean
+    - group
+    - camera
+    - climate
+  entity_config:
+    ## Climate
+    # climate.office:
+    #   expose: true
+    ################ Input Booleans #####################
+    input_boolean.dave_sleep:
+      name: Dave Sleep
+      expose: true
+      aliases:
+        - daves bedtime
+    input_boolean.kayla_sleep:
+      name: Kayla Sleep
+      expose: true
+      aliases:
+        - kayla bedtime
+    input_boolean.sexy_time:
+      name: Sexy Time
+      expose: true
+      aliases:
+        - Sex Time
+        - Hanky Panky
+    ################ Switches ###########################
+    # Office input button
+    switch.office_input_button:
+      name: Office Input Button
+      expose: true
+      aliases:
+        - the office input
+    # Work Desk Power Supply
+    switch.workdesk_power_supply:
+      name: Workdesk Power Supply
+      expose: true
+      aliases:
+        - Workdesk Power
+        - Electronics station
+    # Smart Fan
+    switch.smart_fan_power:
+      name: Smart Fan
+      expose: true
+      aliases:
+        - the livingroom fan
+        - livingroom fan
+    # Smart Powercord
+    switch.smart_powercord_power:
+      name: Smart Powercord
+      expose: true
+      aliases:
+        - the powercord
+        - the office powercord
+        - the smart powercord
+        - the awesome powercord
+    # 3D Printer power
+    switch.printerpower:
+      name: Printer Power
+      expose: true
+      aliases:
+        - 3d printer
+        - cr10s
+    # Office bluray power
+    switch.office_bluray_power:
+      name: Office Bluray player
+      expose: true
+      aliases:
+        - office blueray player
+        - the office blueray player
+        - the office blueray unit
+    # Office bluray sound button
+    switch.office_bluray_3d_sound:
+      name: Office Sound Mode
+      expose: true
+      aliases:
+        - office surround
+    # Office Air Conditioner Power
+    switch.office_ac_power:
+      name: Office Air Conditioner
+      expose: true
+      aliases:
+        - basement air conditioner
+    # Office bluray optical button
+    switch.office_bluray_optical:
+      name: Office Optical Button
+      expose: true
+      aliases:
+        - office optical
+        - office optical input
+    # Tranmission Turtle Mode
+    switch.transmission:
+      name: Transmission Turtle Mode
+      expose: true
+      aliases:
+        - turtle mode
+        - transmission
+
+    # Daves Computer WOL
+    switch.toggle_set:
+      name: Toggle Set
+      expose: true
+      aliases:
+        - daves computer
+
+    ################ Scenes #####################
+    # Office Scenes
+    scene.office_fallout:
+      name: Office Fallout
+      expose: true
+    scene.office_vaporwave:
+      name: Office Vaporwave
+      expose: true
+    scene.office_relax:
+      name: Office Relax
+      expose: true
+      aliases:
+        - relax the office
+        - chill out the office
+    scene.office_productivity:
+      expose: true
+      name: Office Productivity
+    scene.office_super_productive:
+      expose: true
+      name: Office Super Productive
+    scene.office_forest:
+      expose: true
+      name: Office Forest
+    scene.office_somber:
+      expose: true
+      name: Office Somber
+    # Basement Scenes
+    scene.basement_karaoke:
+      name: Basement Karaoke
+      expose: true
+      aliases:
+        - karaoke time
+    scene.basement_fallout:
+      name: Basement Fallout
+      expose: true
+    scene.basement_relax:
+      name: Basement Relax
+      expose: true
+      aliases:
+        - relax the basement
+        - chill out the basement
+    scene.basement_productivity:
+      expose: true
+      name: Basement Productivity
+    scene.basement_super_productive:
+      expose: true
+      name: Basement Super Productive
+    scene.basement_forest:
+      expose: true
+      name: Basement Forest
+    scene.basement_somber:
+      expose: true
+      name: Basement Somber
+    ################# Lights ###################
+    # Square 1 Status LED
+    light.square1_status_led:
+      name: office status led
+      expose: true
+      aliases:
+        - square1 status led
+
+    ################ Blaster ########################
+    light.blaster:
+      name: blaster
+      expose: true
+      aliases:
+        - blaster light
+
+    ################ Lazer ########################
+    light.lazer:
+      name: Lazer
+      expose: true
+      aliases:
+        - lazer light
+
+    ################ Spectrum ########################
+    light.spectrum:
+      name: Spectrum
+      expose: true
+      aliases:
+        - spectrum light
+
+    ################ Alpha Wave ########################
+    light.alphawave:
+      name: alphawave
+      expose: true
+      aliases:
+        - alphawave light
+
+    ################ Beta Wave ########################
+    light.betawave:
+      name: betawave
+      expose: true
+      aliases:
+        - betawave light
+
+    ################ Gatling ########################
+    light.gatling:
+      name: Gatling
+      expose: true
+      aliases:
+        - Gatling Light
+    ################ Rail ########################
+    light.rail:
+      name: Rail
+      expose: true
+      aliases:
+        - Rail light
+
+    ################## Groups ########################
+    light.boxes:
+      name: boxes lights
+      expose: true
+      aliases:
+        - photo lights
+        - wavebox lights
+
+    light.office_accent_lights:
+      name: Office accent lights
+      expose: true
+      aliases:
+        - daves office accent lights
+
+    light.basement_lights:
+      name: Basement Lights
+      expose: true
+      aliases:
+        - Laundry Room Lights

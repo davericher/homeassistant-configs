@@ -1,0 +1,104 @@
+##################
+# Master Bedroom #
+##################
+
+#### Input Boolean ####
+input_boolean:
+  sexy_time:
+    name: Sexy Time
+    initial: false
+  belkin_air_purifier_input:
+    name: Belkin Air Purifier
+    icon: mdi:air-purifier
+
+#### Light ####
+light:
+  # Wave Box Color Lights
+  - platform: group
+    name: Boxes
+    entities:
+      - light.alphawave
+      - light.betawave
+
+#### Automation ####
+automation:
+  ## Sexy Time
+  - alias: Sexy Time
+    initial_state: on
+    trigger:
+      - entity_id: input_boolean.sexy_time
+        from: "off"
+        platform: state
+        to: "on"
+    action:
+      - service: script.1558917697243
+  ######## Maintanence ########
+  # Belkin Air Purifier On
+  - alias: Turn Belkin Air Purifier On
+    initial_state: on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.belkin_air_purifier_input
+        to: "on"
+    action:
+      - service: ifttt.trigger
+        data:
+          event: turn_on_purifier
+          value1: "on"
+    id: e29f508e4d39465ca988729305fe2584
+  # Belkin Air Purifier off
+  - alias: Turn Belkin Air Purifier Off
+    initial_state: on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.belkin_air_purifier_input
+        to: "off"
+    action:
+      - service: ifttt.trigger
+        data:
+          event: turn_off_purifier
+          value1: "off"
+    id: 15aa1f1db4bd422c8b36526739289f8e
+
+#### Script ####
+script:
+  "1558917697243":
+    alias: Sexy Time
+    sequence:
+      - data:
+          entity_id: scene.bedroom_sexytime
+        service: scene.turn_on
+      - data:
+          entity_id: media_player.bedroom
+          media_content_id: https://www.youtube.com/watch?v=DZW9SiFzR8s
+          media_content_type: music
+        service: media_extractor.play_media
+      - data:
+          entity_id: media_player.bedroom_tv
+          media_content_id: https://www.youtube.com/watch?v=L_LUpnjgPso
+          media_content_type: video
+        service: media_extractor.play_media
+      - data:
+          entity_id: input_boolean.sexy_time
+        service: homeassistant.turn_off
+
+#### Scene ####
+scene:
+  # Bedroom Sexy Time
+  - name: Bedroom Sexytime
+    entities:
+      light.boxes:
+        state: on
+        brightness: 179
+        rgb_color: [255, 162, 71]
+        white_value: 0
+      light.staircase:
+        state: off
+      light.master_bedroom:
+        state: on
+        brightness: 10
+      switch.smart_powercord_power:
+        state: off
+      ### Disabled in Summer in Liue of AC
+      # switch.smart_fan_power:
+      #   state: on

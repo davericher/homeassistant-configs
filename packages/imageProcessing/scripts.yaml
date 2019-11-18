@@ -1,0 +1,10 @@
+script:
+  racamdetecon:
+    alias: Ra Cam 1 Motion Script
+    sequence:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.racam1motion
+      - delay:
+          milliseconds: 500
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.racam1motion

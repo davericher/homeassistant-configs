@@ -1,0 +1,211 @@
+##################
+# Basement #
+##################
+
+#### Input Select ####
+input_select:
+  basement_scenes:
+    name: Bastement Scenes
+    options:
+      - basement_fallout
+      - basement_productivity
+      - basement_super_productive
+      - basement_relax
+      - basement_forest
+      - basement_somber
+      - basement_karaoke
+    initial: basement_productivity
+    icon: mdi:palette
+
+#### Light ####
+light:
+  - platform: group
+    name: Basement Lights
+    entities:
+      - light.rail
+      - light.gatling
+
+#### Automation ####
+automation:
+  # Basement Lights On
+  - initial_state: on
+    alias: Basement Movement (Lights On)
+    trigger:
+      - entity_id: binary_sensor.basement_motion
+        from: "off"
+        platform: state
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: "light.basement_lights"
+        state: "off"
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.basement_lights
+          effect: "{{ states.input_select.basement_scenes.state }}"
+          # white_value: 250
+          # brightness: 10
+
+  # Basement Lights Off
+  - initial_state: on
+    alias: Basement Movement (Lights Off)
+    trigger:
+      - entity_id: binary_sensor.basement_motion
+        for: 0:05:00
+        from: "on"
+        platform: state
+        to: "off"
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.basement_lights
+
+  # Basement Lights Off (Printer Light)
+  - initial_state: on
+    alias: Basement Movement (Lights Off 3D)
+    trigger:
+      - entity_id: binary_sensor.basement_motion
+        for: 0:05:00
+        from: "on"
+        platform: state
+        to: "off"
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.octoprint_printing
+          state: "off"
+        - condition: state
+          entity_id: switch.smart_powercord_power
+          state: "on"
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.smart_powercord_power
+
+  # Office Scene Selection Automation
+  - initial_state: on
+    trigger:
+      platform: state
+      entity_id: input_select.basement_scenes
+    action:
+      service: scene.turn_on
+      data_template:
+        entity_id: scene.{{trigger.to_state.state}}
+
+#### Scene ####
+scene:
+  # Basement Forest
+  - name: basement_forest
+    entities:
+      light.rail:
+        state: on
+        brightness: 255
+        rgb_color: [0, 255, 63]
+        white_value: 0
+        effect: None
+      light.gatling:
+        state: on
+        brightness: 255
+        rgb_color: [0, 255, 63]
+        white_value: 0
+        effect: None
+      input_select.basement_scenes: basement_forest
+
+  # Basement Somber
+  - name: basement_somber
+    entities:
+      light.rail:
+        state: on
+        brightness: 102
+        rgb_color: [255, 190, 0]
+        white_value: 0
+        effect: None
+      light.gatling:
+        state: on
+        brightness: 120
+        rgb_color: [255, 190, 0]
+        white_value: 0
+        effect: None
+      input_select.basement_scenes: basement_somber
+
+  # Basement Fallout
+  - name: basement_fallout
+    entities:
+      light.rail:
+        state: on
+        brightness: 255
+        rgb_color: [255, 63, 0]
+        white_value: 0
+        effect: None
+      light.gatling:
+        state: on
+        brightness: 255
+        rgb_color: [71, 0, 255]
+        white_value: 0
+        effect: None
+      input_select.basement_scenes: basement_fallout
+
+  # Basement Productivity
+  - name: basement_productivity
+    entities:
+      light.rail:
+        state: on
+        brightness: 254
+        rgb_color: [255, 215, 141]
+        effect: None
+        white_value: 50
+      light.gatling:
+        state: on
+        brightness: 254
+        rgb_color: [255, 215, 141]
+        effect: None
+        white_value: 50
+      input_select.basement_scenes: basement_productivity
+
+  # Basement Super Productive
+  - name: basement_super_productive
+    entities:
+      light.rail:
+        state: on
+        brightness: 20
+        white_value: 255
+        rgb_color: [0, 0, 0]
+        effect: None
+      light.gatling:
+        state: on
+        brightness: 20
+        white_value: 255
+        rgb_color: [0, 0, 0]
+        effect: None
+      switch.smart_powercord_power:
+        state: on
+      input_select.basement_scenes: basement_super_productive
+
+  # Basement Relax
+  - name: basement_relax
+    entities:
+      light.gatling:
+        state: on
+        brightness: 125
+        rgb_color: [255, 162, 49]
+        white_value: 20
+        effect: None
+      light.rail:
+        state: on
+        brightness: 125
+        rgb_color: [255, 190, 0]
+        white_value: 20
+        effect: None
+      input_select.basement_scenes: basement_relax
+
+  # Basement Karaoke
+  - name: basement_karaoke
+    entities:
+      light.basement_lights:
+        state: on
+        effect: "Random Color with White"
+      switch.smart_powercord_power:
+        state: off
+      input_select.basement_scenes: basement_karaoke

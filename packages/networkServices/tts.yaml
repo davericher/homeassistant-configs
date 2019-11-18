@@ -1,0 +1,7 @@
+# Text To Speech
+tts:
+  - platform: voicerss
+    api_key: !secret voicerss
+    language: "en-us"
+    codec: mp3
+    format: "44khz_8bit_mono"

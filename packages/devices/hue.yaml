@@ -1,0 +1,6 @@
+# Philips Hue
+hue:
+  bridges:
+    - host: !secret hue_host
+      allow_hue_groups: True
+      allow_unreachable: True

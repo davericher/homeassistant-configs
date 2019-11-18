@@ -1,0 +1,124 @@
+homeassistant:
+  customize:
+    scene.office_fallout:
+      friendly_name: Office Fallout
+      entity_picture: https://i.imgur.com/e4KKINz.png
+    scene.office_productivity:
+      friendly_name: Office Productivity
+      entity_picture: https://www.businessfirst.co.uk/news/wp-content/uploads/2015/12/office-productivity.jpg
+    scene.office_productivity_2:
+      friendly_name: Office Super Productive
+      entity_picture: https://www.businessfirst.co.uk/news/wp-content/uploads/2015/12/office-productivity.jpg
+    scene.office_relax:
+      friendly_name: Office Relax
+      entity_picture: https://ih0.redbubble.net/image.102425013.4621/ap,550x550,16x12,1,transparent,t.png
+    switch.toggle_set:
+      friendly_name: Toggle Set
+    switch.ir0ny_com:
+      friendly_name: Ir0nY.com Droplet
+    device_tracker.retro:
+      friendly_name: Retro
+    device_tracker.router:
+      friendly_name: Asus Router Device
+    device_tracker.basementbridge:
+      friendly_name: Basement Hues Bridge
+    device_tracker.dev078mac:
+      friendly_name: Nintendo Switch Device
+    device_tracker.0403d672ab89:
+      friendly_name: Nintendo 3DS Device
+    device_tracker.petcubecamera:
+      friendly_name: Living Room Petcube Device
+    device_tracker.94103e5f1c19:
+      friendly_name: Belkin Air Purifier
+    device_tracker.chromecast:
+      friendly_name: Livingroom Chromecast
+    sensor.yr_symbol:
+      friendly_name: Weather Forcast
+    sensor.daves_primary_email_unread:
+      friendly_name: Daves Primary Email Unread (davericher@gmail.com)
+    sensor.kaylas_phone_to_daves_phone:
+      friendly_name: Driving time between Kayla and Dave
+    sensor.around_home:
+      friendly_name: Crime Reports around Home
+    switch.office_display:
+      friendly_name: Office Bluray Player Power RF
+      hidden: true
+    switch.office_3d_sound_button:
+      friendly_name: Office Bluray 3D Sound Button
+    switch.office_optical_button:
+      friendly_name: Office Bluray Optical Button
+    switch.office_input_button:
+      friendly_name: Office Bluray Input Button
+    light.staircase_lights:
+      friendly_name: Staircase Lights
+      entity_picture: https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/JC/HJC42/HJC42?wid=572&hei=572&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=eoCkP2
+    light.rigel:
+      friendly_name: Rigel
+      entity_picture: https://i2.wp.com/www.astronomytrek.com/wp-content/uploads/2016/02/rigel.jpg?resize=678%2C381&ssl=1
+    light.kitchen_lights:
+      friendly_name: Kitchen Lights
+      entity_picture: https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/JC/HJC42/HJC42?wid=572&hei=572&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=eoCkP2
+    light.the_cook:
+      friendly_name: The Cook
+      entity_picture: https://vignette.wikia.nocookie.net/vcs-canterbury-tales/images/3/3b/Cooks.jpg/revision/latest?cb=20141007170838
+    light.master_bedroom_lights:
+      friendly_name: Master Bedroom Lights
+      entity_picture: https://images.philips.com/is/image/PhilipsConsumer/046677461003-IMS-en_US?$jpglarge$&wid=1250
+    light.claud:
+      friendly_name: Claud
+      entity_picture: https://www.nationalgallery.org.uk/upload/img/Claude-c-face-half.jpg
+    light.gina:
+      friendly_name: Gina
+      entity_picture: https://tvatemywardrobe.files.wordpress.com/2014/02/gina-brooklyn-nine-nine-sweater.png
+    light.kaylas_study_lights:
+      friendly_name: Kaylas Study lights
+      entity_picture: https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/JC/HJC42/HJC42?wid=572&hei=572&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=eoCkP2
+    light.polaris:
+      friendly_name: Polaris
+      entity_picture: https://img.purch.com/w/660/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAxNy8yMjYvb3JpZ2luYWwvbm9ydGgtc3Rhci1jb21wYW5pb25zLmpwZw==
+    light.bellatrix:
+      friendly_name: Bellatrix
+      entity_picture: https://osr.org/wp-content/uploads/2017/02/bellatrix-star.jpg
+    light.daves_office_lights:
+      friendly_name: Daves Office Lights
+      entity_picture: https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/JC/HJCC2/HJCC2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=Q0_kt0
+    light.vega:
+      friendly_name: Vega
+      entity_picture: https://4.bp.blogspot.com/-rzOyBR_Fxto/Vcn3snO4iHI/AAAAAAAAAsw/L7u9GWe611k/s1600/Astronomy%2BScience%2B-%2BVega.jpg
+    light.altair:
+      friendly_name: Altair
+      entity_picture: https://osr.org/wp-content/uploads/2016/08/altair-star.jpg
+    light.sirius:
+      friendly_name: Sirius
+      entity_picture: https://www.teloschannel.com/wp-content/uploads/2012/09/PURCHASED-SIRIUS-UNIVERSITY.jpg
+    light.living_room_lights:
+      friendly_name: Living Room Lights
+      entity_picture: https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/JC/HJCC2/HJCC2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=Q0_kt0
+    light.george:
+      friendly_name: George
+      entity_picture: https://i.pinimg.com/originals/e2/0c/78/e20c787f1585bed351e8218c68e2f774.jpg
+    light.fred:
+      friendly_name: Fred
+      entity_picture: https://i.pinimg.com/originals/e2/0c/78/e20c787f1585bed351e8218c68e2f774.jpg
+    light.helios:
+      friendly_name: Helios
+      entity_picture: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Head_Helios_AM_Rhodes_E49.jpg/800px-Head_Helios_AM_Rhodes_E49.jpg
+    binary_sensor.office_camera_motion:
+      friendly_name: Office Camera Motion
+      entity_picture: https://cdn.tutsplus.com/mac/uploads/2013/10/cctv-xbox.jpg
+    binary_sensor.in_bed:
+      friendly_name: Chances Dave is in Bed
+      entity_picture: https://www.galleryfurniture.com/media/catalog/product/cache/1/image/1600x/040ec09b1e35df139433887a97daa66f/i/m/img_1346.jpg
+    binary_sensor.powercord_lwt:
+      friendly_name: Powercord LWT
+    binary_sensor.splinter_lwt:
+      friendly_name: Splinter 3D Printer
+    media_player.bedroom:
+      friendly_name: Bedroom Home Assistant
+  # Customizations
+  customize_domain:
+    automation:
+      initial_state: "on"
+  customize_glob:
+    automation.*watchdog*:
+      icon: mdi:timer

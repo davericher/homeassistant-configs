@@ -1,0 +1,9 @@
+light:
+    # Camera Flash Lights
+    - platform: group
+      name: Camera Flash Lights
+      entities:
+          - light.cam1_flash_flight
+          - light.cam2_flash_flight
+          - light.cam3_flash_flight
+          - light.cam4_flash_flight

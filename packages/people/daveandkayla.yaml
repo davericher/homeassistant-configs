@@ -1,0 +1,16 @@
+### Groups ###
+group:
+  awesomePeopleGroup:
+    name: Awesome People
+    icon: mdi:account-multiple
+    entities:
+      - person.dave
+      - person.kayla
+
+### Zones ###
+zone:
+  - name: Home
+    latitude: !secret zone_home_lat
+    longitude: !secret zone_home_long
+    radius: 100
+    icon: mdi:castle

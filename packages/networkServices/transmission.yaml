@@ -1,0 +1,3 @@
+# Tramsmission Daemon
+transmission:
+  host: !secret transmission_host

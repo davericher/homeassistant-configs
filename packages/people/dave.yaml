@@ -1,0 +1,57 @@
+### Person ###
+person:
+  - name: Dave
+    id: personDave
+    user_id: a5d9f11d0bef4766a14f15d37d260ac5
+    device_trackers:
+      - device_tracker.davesiphonexr
+      - device_tracker.daves_iphone
+### Input Boolean ###
+input_boolean:
+  dave_sleep:
+    name: Dave SLeep
+    icon: mdi:sleep
+
+### Binary Sensors ###
+binary_sensor:
+  # Trend to detect changes in DaveRicher@gmail.com
+  - platform: trend
+    sensors:
+      davesgmail_count_increase:
+        entity_id: sensor.daves_primary_email_unread
+
+### Sensors ###
+sensor:
+  # DaveRicher@Gmail.com Email
+  - platform: imap
+    name: daves_primary_email_unread
+    server: imap.gmail.com
+    port: 993
+    username: !secret gmail_address
+    password: !secret gmail_password
+
+  # Steam
+  - platform: steam_online
+    api_key: !secret steam
+    accounts:
+      - !secret steam_account
+
+  # Twich Channels
+  - platform: twitch
+    client_id: !secret twitch
+    channels:
+      - symirony
+
+### Automations ###
+automation:
+  # New Gmail
+  - alias: "New Daves Gmail"
+    initial_state: on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.davesgmail_count_increase
+      to: "on"
+    action:
+      - service: esphome.square3_display_message
+        data_template:
+          msg: New Email!

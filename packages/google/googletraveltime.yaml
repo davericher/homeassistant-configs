@@ -1,0 +1,32 @@
+sensor:
+  # Travel Time - Dave Phone to Home
+  - platform: google_travel_time
+    name: "Phone to Home"
+    api_key: !secret google_travel
+    origin: device_tracker.davesiphonexr
+    destination: zone.home
+    options:
+      units: metric
+      mode: driving
+
+  # Travel Time - Kayla to work Bus
+  - platform: google_travel_time
+    name: "Home to Kaylas Work Transit"
+    api_key: !secret google_travel
+    origin: zone.home
+    destination: zone.kaylas_work
+    options:
+      mode: transit
+      transit_mode: bus
+      transit_routing_preference: less_walking
+      units: metric
+
+  # Travel Time - Kayla to work Driving
+  - platform: google_travel_time
+    name: "Home to Kaylas Work Driving"
+    api_key: !secret google_travel
+    origin: zone.home
+    destination: zone.kaylas_work
+    options:
+      mode: driving
+      units: metric

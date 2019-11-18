@@ -1,0 +1,38 @@
+notify:
+  # Twilio Call
+  - name: Twilio Call
+    platform: twilio_call
+    from_number: !secret daves_phone_number
+
+  # Twilio SMS
+  - name: Twilio SMS
+    platform: twilio_sms
+    from_number: !secret daves_phone_number
+
+  # MrNodeBot Twitter
+  - name: MrNodebot Twitter
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_secret
+
+  # MrNodeBot Discord
+  - name: MrNodeBot Discord
+    platform: discord
+    token: !secret discord
+
+  # Android Notification - Shield (Living Room)
+  - name: Nvidia Shield
+    platform: nfandroidtv
+    host: 192.168.1.112 # TODO Bind
+
+  # Android Notification - TV (Living Room)
+  - name: Sony Bravia 65
+    platform: nfandroidtv
+    host: 192.168.1.22 # TODO Bind
+
+  # Android Notifications - Office TV
+  - name: Office TV
+    platform: nfandroidtv
+    host: 192.168.1.116 # TODO Bind

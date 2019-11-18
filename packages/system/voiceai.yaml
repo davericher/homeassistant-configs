@@ -1,0 +1,15 @@
+dialogflow:
+# Intentions
+intent_script:
+  defaultIntent:
+    speech:
+      text: I am sorry, my overloard Dave has not configured me in such a way to answer this query
+  getKitchenTemperature:
+    speech:
+      text: The kitchen temperature is {{ states('sensor.kitchen_temperature') }} degrees celsius, with a humidty of {{ states('sensor.kitchen_humidity') }} %
+  getStudyTemperature:
+    speech:
+      text: The study temperature is {{ states('sensor.study_temperature') }} degrees celsius, with a humidty of {{ states('sensor.study_humidity') }} %
+  getOfficeTemperature:
+    speech:
+      text: The office temperature is {{ states('sensor.office_temperature') }} degrees celsius, with a humidty of {{ states('sensor.office_humidity') }} %

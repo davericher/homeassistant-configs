@@ -1,0 +1,53 @@
+sensor:
+    # Shuttle Launches
+    - platform: launch_library
+
+    # Crime reports
+    - platform: crimereports
+      name: Around Home
+      radius: 500
+
+    # Web Socket API
+    - platform: websocket_api
+
+    # Bitcoin
+    - platform: bitcoin
+      display_options:
+          - exchangerate
+          - trade_volume_btc
+          - difficulty
+          - btc_mined
+          - miners_revenue_usd
+          - market_price_usd
+          - hash_rate
+          - estimated_transaction_volume_usd
+
+    # Github
+    - platform: github
+      access_token: !secret github
+      repositories:
+          - path: "home-assistant/home-assistant"
+          - path: "esphome/esphome"
+          - path: "esphome/esphome-core"
+          - path: "funsocietyirc/MrNodeBot"
+          - path: "RMerl/asuswrt-merlin"
+    # # Uber
+    # Disabled due to server token being disabled
+    # - platform: uber
+    #   server_token: !secret uber
+    # # NetData (RA)
+    # - platform: netdata
+    #   host: 192.168.1.2
+    #   port: 19999
+    #   resources:
+    #     cpu:
+    #       data_group: system.cpu
+    #       element: system
+    # May be deprecated in future release
+    # # Next Bedroom Alarm
+    # - platform: template
+    #   sensors:
+    #     bedroom_next_alarm_hours:
+    #       friendly_name: "Bedroom Next Alarm Hours"
+    #       unit_of_measurement: " Hours"
+    #       value_template: "{{ ((as_timestamp(states.sensor.bedroom_home_assitant_alarm.state) - as_timestamp(now())) / 3600) | round(2)}}"

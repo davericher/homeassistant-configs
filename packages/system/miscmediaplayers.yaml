@@ -1,0 +1,14 @@
+media_player:
+  # Bedroom Sony Bravia
+  - platform: braviatv
+    host: 192.168.1.22
+  # Spotify Account
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret bravia_tv
+    aliases:
+      abc123def456: "Living Room"
+      9183abas000: "Bed Room"
+  - platform: songpal
+    name: Sony Soundbar
+    endpoint: http://192.168.1.171:10000/sony

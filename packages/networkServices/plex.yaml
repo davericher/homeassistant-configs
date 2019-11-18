@@ -1,0 +1,32 @@
+media_player:
+    # Plex
+    - platform: plex
+sensor:
+    # Plex
+    - platform: plex
+      host: !secret plex_host
+      port: !secret plex_port
+    # Plex Recently Added
+    - platform: plex_recently_added
+      token: !secret plex_token
+      host: !secret plex_recently_added_host
+      port: !secret plex_recently_added_port
+      download_images: true
+      max: 5
+      section_types:
+          - movie
+          - show
+    #   exclude: "The Bachelor"
+    # Tautulli
+    - platform: tautulli
+      api_key: !secret tautulli
+      host: !secret tautulli_host
+    #   ssl: true
+    #   port: 443
+    #   verify_ssl: false
+    # # Trakt Upcoming
+    # - platform: trakt
+    #   id: !secret trakt_client_id
+    #   secret: !secret trakt_client_secret
+    #   username: davericher
+    #   days: 7

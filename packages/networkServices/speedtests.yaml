@@ -1,0 +1,10 @@
+# Fast.com Speed Test
+fastdotcom:
+  scan_interval:
+    minutes: 0
+    hours: 12
+# SpeedTest.net Speed test
+speedtestdotnet:
+  scan_interval:
+    minutes: 0
+    hours: 24

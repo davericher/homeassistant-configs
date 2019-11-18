@@ -1,0 +1,35 @@
+#### Automation ####
+automation:
+  ## Turn the living room fan on if the temperature outside is above 24 degrees for 1 min
+  # Fan On
+  - initial_state: on
+    alias: Living Room Fan On
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.temperature
+      above: 24
+      for: 00:01:00
+    condition:
+      - condition: state
+        entity_id: switch.smart_fan_power
+        state: "off"
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.smart_fan_power
+  ## Turn the living room fan off if the temperature outside is below 25 degrees for 1 min
+  - initial_state: on
+    alias: Living Room Fan Off
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.temperature
+      below: 25
+      for: 00:01:00
+    condition:
+      - condition: state
+        entity_id: switch.smart_fan_power
+        state: "on"
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.smart_fan_power

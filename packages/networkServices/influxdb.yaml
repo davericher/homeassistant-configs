@@ -1,0 +1,15 @@
+# Influx DB Configuration
+influxdb:
+  host: !secret influxdb_host
+  username: root
+  password: !secret influxdb_password
+  include:
+    domains:
+      - input_boolean
+      - input_select
+      - sensor
+      - binary_sensor
+      - switch
+      - light
+      - person
+      - weather

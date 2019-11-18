@@ -1,0 +1,13 @@
+# Digital ocean
+digital_ocean:
+  access_token: !secret digital_ocean
+binary_sensor:
+  # Digital Ocean Droplettes
+  - platform: digital_ocean
+    droplets:
+      - "ir0ny.com"
+switch:
+  # Digital Ocean
+  - platform: digital_ocean
+    droplets:
+      - "ir0ny.com"

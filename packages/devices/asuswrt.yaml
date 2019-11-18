@@ -1,0 +1,10 @@
+# Asus Router
+asuswrt:
+  host: !secret asuswrt_host
+  username: !secret asuswrt_username
+  ssh_key: !secret asuswrt_sshkey
+  sensors:
+    - upload
+    - download
+    - download_speed
+    - upload_speed

@@ -1,0 +1,20 @@
+# UPS
+apcupsd:
+  host: !secret apcupsd_host
+  port: !secret apcupsd_port
+sensor:
+  - platform: apcupsd
+    resources:
+      - starttime
+      - model
+      - status
+      - linev
+      - loadpct
+      - bcharge
+      - timeleft
+      - mbattchg
+      - mintimel
+      - maxtime
+      - outputv
+      - lotrans
+      - hitrans

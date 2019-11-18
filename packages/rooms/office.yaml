@@ -1,0 +1,390 @@
+##################
+# Office         #
+##################
+
+#### Input Selects ####
+input_select:
+    office_scenes:
+        name: Office Scenes
+        options:
+            - office_fallout
+            - office_productivity
+            - office_super_productive
+            - office_relax
+            - office_forest
+            - office_somber
+            - office_vaporwave
+        initial: office_relax
+        icon: mdi:palette
+
+#### Light ####
+light:
+    # Office Accient White lights
+    - platform: group
+      name: Office Accent Lights
+      entities:
+          - light.blaster
+          - light.lazer
+          - light.spectrum
+    - platform: group
+      name: All Office Lights
+      entities:
+          - light.daves_office_entertainment_area
+          - light.office_accent_lights
+#### Switch ####
+switch:
+    # Template Switch for Bluray Power
+    # Uses device tracker for state
+    - platform: template
+      switches:
+          office_bluray_power:
+              friendly_name: Office Blu-Ray Power
+              value_template: "{{ is_state('device_tracker.office_bluray', 'home') }}"
+              turn_on:
+                  service: switch.toggle
+                  data:
+                      entity_id: switch.office_bluray_power_2
+              turn_off:
+                  service: switch.toggle
+                  data:
+                      entity_id: switch.office_bluray_power_2
+
+    # Turn Off Set
+    # https://www.wikihow.com/Remotely-Shutdown-a-Computer
+    # net rpc shutdown -I 192.168.1.10 -U "login%password"
+    - platform: command_line
+      switches:
+          turn_off_set:
+              command_off: "ssh irony@192.168.1.2 /volumes/scripts/turnoffset.sh"
+
+    # Turn On Set
+    - platform: wake_on_lan
+      name: "Wake Set"
+      #host: 192.168.1.10
+      mac_address: "38-D5-47-AB-B0-EA"
+    - platform: wake_on_lan
+      name: "Wake Set Secondary"
+      #host: 192.168.1.11
+      mac_address: "38-D5-47-AB-B0-E9"
+
+    - platform: template
+      switches:
+          toggle_set:
+              value_template: "{{ states.switch.wake_set.state }}"
+              turn_on:
+                  service: switch.turn_on
+                  entity_id: switch.wake_set
+              turn_off:
+                  service: switch.turn_off
+                  entity_id: switch.turn_off_set
+
+    # Turn On/Off Game VM
+    - platform: command_line
+      switches:
+          gamevm:
+              command_on: "ssh irony@192.168.1.2 sudo virsh start win10"
+              command_off: "ssh irony@192.168.1.2 sudo virsh shutdown win10"
+              command_state: "ssh irony@192.168.1.2 sudo virsh list"
+              value_template: "{{ value | regex_search('win10', ignorecase=False) }}"
+              friendly_name: Game VM
+
+#### Automations ####
+automation:
+    # Office Scene Switch Next
+    - alias: Office Scene Switch Next
+      initial_state: on
+      trigger:
+          - platform: state
+            entity_id: binary_sensor.office_scene_1
+            to: "on"
+      action:
+          - service: input_select.select_next
+            data:
+                entity_id: input_select.office_scenes
+      id: 091d4b4bbd074186857ae10c99a23097
+    # Office Scene Switch Previous
+    - alias: Office Scene Switch Previous
+      initial_state: on
+      trigger:
+          - platform: state
+            entity_id: binary_sensor.office_scene_2
+            to: "on"
+      action:
+          - service: input_select.select_previous
+            data:
+                entity_id: input_select.office_scenes
+      id: b1396a1af51c4b0d8382656fd020a8d4
+    # Office Scene Selection Automation
+    - alias: Office Scenes
+      initial_state: on
+      trigger:
+          platform: state
+          entity_id: input_select.office_scenes
+      action:
+          - service: scene.turn_on
+            data_template:
+                entity_id: scene.{{trigger.to_state.state}}
+          - service: esphome.square3_display_message
+            data_template:
+                msg: "{{ states.input_select.office_scenes.state.split('_')[0] }} {{ states.input_select.office_scenes.state.split('_')[1] }}"
+      id: f2186effa7d54021854aba4cf3ddf38b
+
+#### Scene ####
+scene:
+    # Office Forest
+    - name: office_forest
+      entities:
+          light.vega:
+              state: on
+              brightness: 254
+              rgb_color: [14, 255, 110]
+          light.altair:
+              state: on
+              brightness: 254
+              rgb_color: [8, 255, 94]
+          light.sirius:
+              state: on
+              brightness: 254
+              rgb_color: [19, 255, 126]
+          light.blaste:
+              state: on
+              brightness: 254
+              rgb_color: [19, 255, 124]
+              white_value: 0
+          light.spectrum:
+              state: on
+              brightness: 255
+              rgb_color: [0, 255, 63]
+              white_value: 0
+          light.lazer:
+              state: on
+              brightness: 255
+              rgb_color: [0, 255, 63]
+              white_value: 0
+          input_select.office_scenes: office_forest
+          light.square3_lcd_backlight:
+              brightness: 100
+              state: on
+    # Office Somber
+    - name: office_somber
+      entities:
+          light.vega:
+              state: on
+              brightness: 1
+              rgb_color: [255, 166, 40]
+          light.altair:
+              state: off
+          light.sirius:
+              state: on
+              brightness: 94
+              rgb_color: [255, 166, 40]
+          light.blaster:
+              state: on
+              brightness: 105
+              rgb_color: [255, 200, 36]
+              white_value: 0
+          light.spectrum:
+              state: on
+              brightness: 102
+              rgb_color: [255, 190, 0]
+              white_value: 0
+          light.lazer:
+              state: on
+              brightness: 120
+              rgb_color: [255, 190, 0]
+              white_value: 0
+          light.square3_lcd_backlight:
+              brightness: 80
+              state: on
+          input_select.office_scenes: office_somber
+
+    # Office Fallout
+    - name: office_fallout
+      entities:
+          light.vega:
+              state: on
+              brightness: 254
+              rgb_color: [71, 0, 255]
+          light.altair:
+              state: on
+              brightness: 254
+              rgb_color: [255, 46, 31]
+          light.sirius:
+              state: on
+              brightness: 254
+              rgb_color: [71, 0, 255]
+          light.blaster:
+              state: on
+              brightness: 254
+              rgb_color: [64, 0, 255]
+              white_value: 0
+          light.spectrum:
+              state: on
+              brightness: 255
+              rgb_color: [255, 63, 0]
+              white_value: 0
+          light.lazer:
+              state: on
+              brightness: 255
+              rgb_color: [255, 0, 0]
+              white_value: 0
+          input_select.office_scenes: office_fallout
+          light.square3_lcd_backlight:
+              brightness: 100
+              state: on
+    # Office Productivity
+    - name: office_productivity
+      entities:
+          light.vega:
+              state: on
+              brightness: 254
+              rgb_color: [255, 215, 141]
+          light.altair:
+              state: on
+              brightness: 254
+              rgb_color: [255, 215, 141]
+          light.sirius:
+              state: on
+              brightness: 254
+              rgb_color: [255, 215, 141]
+          light.blaster:
+              state: on
+              brightness: 254
+              rgb_color: [255, 215, 141]
+              white_value: 1
+          light.spectrum:
+              state: on
+              brightness: 254
+              rgb_color: [255, 215, 141]
+              white_value: 1
+          light.lazer:
+              state: on
+              brightness: 254
+              rgb_color: [255, 215, 141]
+              white_value: 1
+          light.square3_lcd_backlight:
+              brightness: 200
+              state: on
+          input_select.office_scenes: office_productivity
+
+    # Office Super Productive
+    - name: office_super_productive
+      entities:
+          light.vega:
+              state: on
+              brightness: 254
+              color_temp: 426
+          light.altair:
+              state: on
+              brightness: 254
+              color_temp: 426
+          light.sirius:
+              state: on
+              brightness: 254
+              color_temp: 426
+          light.blaster:
+              state: on
+              brightness: 1
+              white_value: 90
+              rgb_color: [0, 0, 0]
+          light.spectrum:
+              state: on
+              brightness: 1
+              white_value: 90
+              rgb_color: [0, 0, 0]
+          light.lazer:
+              state: on
+              brightness: 1
+              white_value: 90
+              rgb_color: [0, 0, 0]
+          light.square3_lcd_backlight:
+              brightness: 255
+              state: on
+          input_select.office_scenes: office_super_productive
+
+    # Office Relax
+    - name: office_relax
+      entities:
+          light.vega:
+              state: on
+              brightness: 68
+              rgb_color: [255, 162, 50]
+          light.altair:
+              state: on
+              brightness: 175
+              rgb_color: [255, 165, 55]
+          light.sirius:
+              state: on
+              brightness: 68
+              rgb_color: [255, 162, 50]
+          light.blaster:
+              state: on
+              brightness: 255
+              rgb_color: [255, 162, 49]
+              white_value: 0
+          light.spectrum:
+              state: on
+              brightness: 255
+              rgb_color: [255, 190, 0]
+              white_value: 0
+          light.lazer:
+              state: on
+              brightness: 255
+              rgb_color: [255, 200, 36]
+              white_value: 0
+          input_select.office_scenes: office_relax
+          light.square3_lcd_backlight:
+              brightness: 100
+              state: on
+    # Office Vaporwave
+    - name: office_vaporwave
+      entities:
+          light.altair:
+              state: on
+              brightness: 238
+              rgb_color:
+                  - 59
+                  - 175
+                  - 255
+          light.blaster:
+              brightness: 254
+              rgb_color:
+                  - 64
+                  - 0
+                  - 255
+              state: on
+              white_value: 0
+          light.lazer:
+              brightness: 146
+              rgb_color:
+                  - 71
+                  - 208
+                  - 255
+              state: on
+              white_value: 0
+          light.sirius:
+              brightness: 249
+              rgb_color:
+                  - 255
+                  - 192
+                  - 45
+              state: on
+          light.spectrum:
+              brightness: 161
+              rgb_color:
+                  - 255
+                  - 200
+                  - 36
+              state: on
+              white_value: 0
+          light.vega:
+              brightness: 210
+              rgb_color:
+                  - 82
+                  - 252
+                  - 255
+              state: on
+          light.square3_lcd_backlight:
+              brightness: 124
+              state: on
+          input_select.office_scenes: office_vaporwave

@@ -1,0 +1,9 @@
+[submodule "custom_components/spotcast"]
+	path = custom_components/spotcast
+	url = https://github.com/fondberg/spotcast.git
+[submodule "custom_deps/custom_updater"]
+	path = custom_deps/custom_updater
+	url = https://github.com/custom-components/custom_updater.git
+[submodule "themes/home-assistant-community-themes"]
+	path = themes/home-assistant-community-themes
+	url = https://github.com/maartenpaauw/home-assistant-community-themes.git

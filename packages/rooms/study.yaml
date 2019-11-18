@@ -1,0 +1,45 @@
+##################
+# Study          #
+##################
+
+#### Automation ####
+automation:
+  # Study Lights On
+  - id: 79fb35ec73e4499c86f983d26bca9713
+    initial_state: on
+    alias: Study Movement (Lights On)
+    trigger:
+      - entity_id: binary_sensor.study_motion
+        platform: state
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: light.study
+        state: "off"
+      - condition: or
+        conditions:
+          - after: sunset
+            after_offset: "-4:00:00"
+            condition: sun
+          - before: sunrise
+            before_offset: "-4:00:00"
+            condition: sun
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.study
+  # Study Lights Off
+  - id: 0f9e823bea694ec3a372720c53197b1f
+    initial_state: on
+    alias: Study Movement (Lights Off)
+    trigger:
+      - entity_id: binary_sensor.study_motion
+        for:
+          minutes: 30
+        from: "on"
+        platform: state
+        to: "off"
+    action:
+      - data:
+          entity_id: light.study
+        service: light.turn_off

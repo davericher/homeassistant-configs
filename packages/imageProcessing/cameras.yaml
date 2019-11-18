@@ -1,0 +1,61 @@
+camera:
+    # 3D Printing
+    - platform: mjpeg
+      name: Camera2
+      mjpeg_url: !secret camera2_jpeg_url
+      still_image_url: !secret camera2_jpeg_still
+    # RA Camera 1
+    - platform: mjpeg
+      name: RaCamera1
+      mjpeg_url: !secret ra_camera1_jpeg_url
+      still_image_url: !secret ra_camera1_jpeg_still
+    # Kimmy Camera 1
+    - platform: mjpeg
+      name: KimmyCamera1
+      mjpeg_url: !secret kimmy_camera1_jpeg_url
+      still_image_url: !secret kimmy_camera1_jpeg_still
+    # Kimmy Camera 2
+    - platform: mjpeg
+      name: KimmyCamera2
+      mjpeg_url: !secret kimmy_camera2_jpeg_url
+      still_image_url: !secret kimmy_camera2_jpeg_still
+    # Highways
+    - platform: generic
+      name: Hwy 417 near Pinecrest Rd
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc09.jpg"
+    - platform: generic
+      name: Hwy 417 near Carling Ave
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc06.jpg"
+    - platform: generic
+      name: Hwy 417 near Woodroffe Ave
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc08.jpg"
+
+# Reset The ESP Cameras every 4 hours
+automation:
+    - alias: Reset Camera Job
+      trigger:
+          platform: time_pattern
+          hours: "/4"
+          minutes: 00
+          seconds: 00
+      action:
+          - entity_id: switch.cam1_restart
+            service: switch.toggle
+          - entity_id: switch.cam2_restart
+            service: switch.toggle
+          - entity_id: switch.cam3_restart
+            service: switch.toggle
+          - entity_id: switch.cam4_restart
+            service: switch.toggle
+## Use Motion via Input Boolean trigger on Ra Camera 1 (octoeye)
+input_boolean:
+    racam1motion:
+        name: "Ra Cam1 Motion"
+        initial: off
+binary_sensor:
+    - platform: template
+      sensors:
+          ra_cam_1_motion:
+              friendly_name: "Ra Cam1 Motion"
+              value_template: '{{states("input_boolean.racam1motion")}}'
+              device_class: motion

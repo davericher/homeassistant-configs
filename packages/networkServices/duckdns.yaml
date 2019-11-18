@@ -1,0 +1,4 @@
+# Duck DNS
+duckdns:
+  domain: irony
+  access_token: !secret duck_dns

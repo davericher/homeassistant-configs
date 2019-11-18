@@ -1,0 +1,113 @@
+binary_sensor:
+  - platform: mqtt
+    name: "printerpower_lwt"
+    state_topic: "tele/printerpower/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: connectivity
+automation:
+  # Sonof HA Power Up
+  - alias: Power state on HA start-up
+    initial_state: on
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish
+        data:
+          topic: cmnd/sonoffs/power1
+          payload: ""
+      - service: mqtt.publish
+        data:
+          topic: cmnd/sonoffs/power2
+          payload: ""
+      - service: mqtt.publish
+        data:
+          topic: cmnd/sonoffs/Power3
+          payload: ""
+      - service: mqtt.publish
+        data:
+          topic: cmnd/sonoffs/power4
+          payload: ""
+    id: dcf73f4447814295850f89265b6f11f3
+switch:
+  - platform: mqtt
+    name: printerpower
+    state_topic: "stat/printerpower/POWER"
+    command_topic: "cmnd/printerpower/POWER"
+    availability_topic: "tele/printerpower/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+sensor:
+  # Printerpower (sonoff POW)
+  - platform: mqtt
+    name: "printerpower_time"
+    state_topic: "tele/printerpower/STATE"
+    value_template: "{{ value_json.Time }}"
+
+  - platform: mqtt
+    name: "printerpower_uptime"
+    state_topic: "tele/printerpower/STATE"
+    value_template: "{{ value_json.Uptime }}"
+
+  - platform: mqtt
+    name: "printerpower_voltage"
+    state_topic: "tele/printerpower/STATE"
+    value_template: "{{ value_json.Vcc }}"
+    unit_of_measurement: "V"
+
+  - platform: mqtt
+    name: "printerpower_power"
+    state_topic: "tele/printerpower/STATE"
+    value_template: "{{ value_json.POWER }}"
+
+  - platform: mqtt
+    name: "printerpower_energy_total"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Total'] }}"
+    unit_of_measurement: "kWh"
+
+  - platform: mqtt
+    name: "printerpower_energy_yesterday"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Yesterday'] }}"
+    unit_of_measurement: "kWh"
+
+  - platform: mqtt
+    name: "printerpower_energy_today"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Today'] }}"
+    unit_of_measurement: "kWh"
+
+  - platform: mqtt
+    name: "printerpower_energy_period"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Period'] }}"
+
+  - platform: mqtt
+    name: "printerpower_energy_power"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Power'] }}"
+    unit_of_measurement: "W"
+
+  - platform: mqtt
+    name: "printerpower_energy_factor"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Factor'] }}"
+
+  - platform: mqtt
+    name: "printerpower_energy_voltage"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Voltage'] }}"
+    unit_of_measurement: "V"
+
+  - platform: mqtt
+    name: "printerpower_energy_current"
+    state_topic: "tele/printerpower/SENSOR"
+    value_template: "{{ value_json['ENERGY']['Current'] }}"
+    unit_of_measurement: "A"

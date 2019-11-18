@@ -1,0 +1,59 @@
+### System Health ###
+system_health:
+### Configurator ###
+config:
+### Updater ###
+updater:
+### Conversation ###
+conversation:
+### History ###
+history:
+### Log Book ###
+logbook:
+### Map ###
+map:
+### ZeroConf ###
+# zeroconf:
+### Media Extractor ###
+media_extractor:
+### Stream ###
+# stream:
+### SSDP ###
+ssdp:
+### Mobile App ###
+mobile_app:
+### UPNP ###
+upnp:
+### VS Code Debugger ###
+ptvsd:
+    host: 0.0.0.0
+    port: 5678
+### Discovery ###
+discovery:
+    ignore:
+        - belkin_wemo
+### Recorder ###
+recorder:
+    db_url: !secret recorder_db
+    purge_keep_days: 7
+### Calendars ###
+calendar:
+    - platform: todoist
+      token: !secret todoist
+# Shopping Lists
+shopping_list:
+# ios: !include ios.yaml
+# wemo:
+# climate:
+#   - platform: generic_thermostat
+#     name: Office
+#     heater: switch.office_ac_power
+#     target_sensor: sensor.office_temperature
+#     min_temp: 17
+#     max_temp: 30
+#     ac_mode: true
+#     precision: 1
+#     initial_operation_mode: "off"
+#     cold_tolerance: 0.5
+#     min_cycle_duration:
+#       minutes: 5

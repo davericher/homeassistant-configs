@@ -1,0 +1,7 @@
+# RSS Feed Reader
+feedreader:
+  urls:
+    - http://rss.slashdot.org/Slashdot/slashdotMainatom
+  scan_interval:
+    minutes: 30
+  max_entries: 10

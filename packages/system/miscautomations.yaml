@@ -1,0 +1,12 @@
+automation:
+  ######## Web Hooks ########
+  # http://your-home-assistant/api/webhook/some_hook_id
+  - alias: Ghost Publication
+    initial_state: on
+    trigger:
+      platform: webhook
+      webhook_id: !secret web_hook_ghost_subscriber
+    action:
+      - service: esphome.square3_display_message
+        data_template:
+          msg: You have a new ghost subscriber!

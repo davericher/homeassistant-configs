@@ -1,0 +1,129 @@
+person:
+  - name: Kayla
+    id: personKayla
+    device_trackers:
+      - device_tracker.kaylas_iphone
+
+zone:
+  - name: Kaylas Work
+    latitude: !secret zone_kayla_work_lat
+    longitude: !secret zone_kayla_work_long
+    radius: 250
+
+### Automations ###
+automation:
+  ######## Kayla Presence ########
+  # Kayla has Left the house
+  - id: 9eb698f37b66472290b4fd262173df1d
+    initial_state: on
+    alias: Kayla is Away
+    trigger:
+      - entity_id: device_tracker.kaylas_iphone
+        for:
+          minutes: 5
+        platform: state
+        to: not_home
+    action:
+      - data:
+          data:
+            subtitle: keep calm and chive on
+          message: Kayla has left the building
+          title: Girlfrield Alert
+        service: notify.mobile_app_daves_iphone_xr
+      - service: esphome.square3_display_message
+        data_template:
+          msg: Kayla has left
+  # Kayla Is Home
+  - id: c7ca1794fd83481ebc1f959a8b38f3c0
+    initial_state: on
+    alias: Kayla is Home
+    trigger:
+      - entity_id: device_tracker.kaylas_iphone
+        for:
+          seconds: 30
+        from: not_home
+        platform: state
+        to: home
+    action:
+      - service: notify.mobile_app_daves_iphone_xr
+        data:
+          message: Kayla has arrived!
+          title: Girlfrield Alert
+
+      - service: esphome.square3_display_message
+        data:
+          msg: Kayla is Home
+      - service: notify.ios_kaylas_iphone
+        data:
+          message: Please remember to put away your shoes
+          title: Welcome Home!
+  ######## Kayla Sleep ########
+  # Kayla Sleep
+  - id: "1550990249142"
+    initial_state: on
+    alias: Kayla is going to sleep
+    trigger:
+      - entity_id: binary_sensor.mockturtle_kayla_sleep
+        from: "off"
+        platform: state
+        to: "on"
+    condition: []
+    action:
+      - service: tts.google_translate_say
+        entity_id: media_player.bedroom
+        data:
+          message: Goodnight Queen Kayla, Goodnight Princess Libby, may your dreams be of magic and dragons
+      - service: esphome.square3_display_message
+        data_template:
+          msg: Kayla is going to sleep
+      - service: light.turn_on
+        entity_id: light.master_bedroom
+        data:
+          brightness: 25
+      - service: light.turn_off
+        entity_id: light.boxes
+      ### Disabled for summer in liue of AC ####
+      # - service: switch.turn_on
+      #   entity_id: switch.smart_fan_power
+  # Kayla Wake up
+  - alias: Kayla is waking up
+    initial_state: on
+    trigger:
+      - entity_id: binary_sensor.mockturtle_kayla_sleep
+        from: "on"
+        platform: state
+        to: "off"
+        for: 0:00:03
+    condition: []
+    action:
+      - service: tts.google_translate_say
+        entity_id: media_player.bedroom
+        data_template:
+          message: >
+            {%
+            set interm = {
+              "name": "Kayla",
+              "time": now().strftime("%-I:%-M%p on %A %B %-d"),
+              "currentTemp": states.sensor.dark_sky_temperature.state,
+              "summary": states.sensor.dark_sky_summary.state,
+            }
+            %}
+            Good Morning {{interm.name}}, the time is {{interm.time}}. It is currently {{interm.currentTemp}}. Forecast {{interm.summary}}
+            {% if now().weekday() in (0,1,2,3,4) %}
+            Have a nice day oat work!
+            {% else %}
+            It is a weekend! You do you!
+            {% endif %}
+      - service: switch.turn_off
+        entity_id: switch.smart_fan_power
+      - service: light.turn_off
+        entity_id: light.study
+      - service: esphome.square3_display_message
+        data_template:
+          msg: Kayla is Awake
+
+### Input Booleans ###
+input_boolean:
+  kayla_sleep:
+    name: Kayla Sleep
+    icon: mdi:sleep

@@ -1,0 +1,107 @@
+### Octoprint Platform ###
+octoprint:
+  - host: !secret octopi_api_host
+    api_key: !secret octopi_api_key
+    bed: True
+    number_of_tools: 1
+
+### Sensors ###
+sensor:
+  # Octoprint
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+  # Octoprint job rounded
+  - platform: template
+    sensors:
+      octoprint_job_percentage_rounded:
+        friendly_name: "Ocotoprint Job Percentage Rounded"
+        unit_of_measurement: "%"
+        value_template: "{{ states('sensor.octoprint_job_percentage') | round(0)}}"
+
+### Binary Sensors ###
+binary_sensor:
+  # Splinter (Octopi) MQTT Status
+  - platform: mqtt
+    name: "splinter_lwt"
+    state_topic: "octoprint/mqtt"
+    value_template: "{{ value }}"
+    payload_on: "connected"
+    payload_off: "disconnected"
+    device_class: connectivity
+  # Octoprint
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+
+### Automations ###
+automation:
+  # 3D Print Started
+  - alias: 3D Printer started
+    initial_state: on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.octoprint_printing
+      from: "off"
+      to: "on"
+    action:
+      - service: tts.google_translate_say
+        entity_id: media_player.office_speaker
+        data:
+          message: Splinter has started printing
+      - service: notify.mobile_app_daves_iphone_xr
+        data:
+          title: 3D Printer alert
+          message: Splinter has started printing
+      - service: switch.turn_on
+        entity_id: switch.smart_powercord_power
+      - service: mqtt.publish
+        data_template:
+          payload_template: start
+          topic: office/togglePrinterRecord
+    id: 4957fb1b0bc34888815a20b4f9f6dd98
+  # 3D Print Stopped
+  - alias: 3D Printer stopped
+    initial_state: on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.octoprint_printing
+      from: "on"
+      to: "off"
+    action:
+      - service: tts.google_translate_say
+        entity_id: media_player.office_speaker
+        data:
+          message: Splinter has finished printing
+      - service: notify.mobile_app_daves_iphone_xr
+        data:
+          title: 3D Printer alert
+          message: Splinter has finished printing
+      - service: mqtt.publish
+        data_template:
+          payload_template: stop
+          topic: office/togglePrinterRecord
+      - delay: "00:00:10"
+      - service: switch.turn_off
+        entity_id: switch.smart_powercord_power
+    id: 81653fc74999405c84334eca78377ec2
+
+### Scripts ###
+script:
+  printer_started:
+    alias: 3D printer has started
+    sequence:
+      - service: tts.google_translate_say
+        entity_id: media_player.office_speaker
+        data:
+          message: Splinter has started printing
+      - service: notify.ios_davesiphonexr
+        data:
+          title: 3D Printer alert
+          message: Splinter has started printing
+          data:
+            subtitle: Always bring a towel

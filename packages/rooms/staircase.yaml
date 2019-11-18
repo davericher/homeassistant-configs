@@ -1,0 +1,54 @@
+##################
+# Staircase      #
+##################
+
+#### Group ####
+group:
+  # Staircase Motion Group
+  staircaseMotionGroup:
+    name: Staircase Motion Group
+    control: hidden
+    entities:
+      - binary_sensor.staircase_motion
+      - binary_sensor.staircase_motion2
+
+#### Automation ####
+automation:
+  # Staircase Lights On
+  - id: ad2719c62a3e4ca5aff3b09c07bbec83
+    initial_state: on
+    alias: Staircase Movement (Lights On)
+    trigger:
+      - entity_id: group.staircasemotiongroup
+        from: "off"
+        platform: state
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: "light.rigel"
+        state: "off"
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.rigel
+          brightness: >
+            {% if states.binary_sensor.mockturtle_kayla_sleep.state == 'on' %}
+            5
+            {% else %}
+            250
+            {% endif %}
+
+  # Staircase Lights Off
+  - id: ca3e738e219846ba8ace68ede910a414
+    initial_state: on
+    alias: Staircase Movement (Lights Off)
+    trigger:
+      - entity_id: group.staircasemotiongroup
+        for: 0:01:00
+        from: "on"
+        platform: state
+        to: "off"
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.rigel

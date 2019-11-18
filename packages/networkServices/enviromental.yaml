@@ -1,0 +1,67 @@
+### Weather Platform ###
+weather:
+  - platform: darksky
+    api_key: !secret darksky
+  - platform: environment_canada
+    station: "ON/s0000430"
+### Air Quality (Opensensemap) ###
+air_quality:
+  - platform: opensensemap
+    station_id: 5b3e94255dc1ec001be46420
+### Open UV ###
+openuv:
+  api_key: !secret openuv
+### Sun Platform ###
+sun:
+### World Wide Lightning Network ###
+wwlln:
+### Sensors ###
+sensor:
+  # Environment Canada
+  - platform: environment_canada
+    station: "ON/s0000430"
+  # Dark Sky Weather
+  - platform: darksky
+    api_key: !secret darksky
+    forecast:
+      - 0
+    monitored_conditions:
+      - summary
+      - icon
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - precip_accumulation
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_gust
+      - wind_bearing
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - temperature_high
+      - temperature_low
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - precip_intensity_max
+      - uv_index
+      - moon_phase
+      - sunrise_time
+      - sunset_time
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - alerts
+  # Year?
+  - platform: yr
+  # CO2 Signal
+  - platform: co2signal
+    token: !secret c02signal
+camera:
+  - platform: environment_canada
+    station: XFT

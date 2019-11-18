@@ -1,0 +1,52 @@
+##################
+# Kitchen        #
+##################
+
+#### Automation ####
+automation:
+  # Kitchen Lights On
+  - id: f0f7adf0cc264acdacc40ead292b52de
+    initial_state: on
+    alias: Kitchen Movement (Lights On)
+    trigger:
+      - entity_id: binary_sensor.kitchen_motion
+        platform: state
+        to: "on"
+        from: "off"
+    condition:
+      - condition: state
+        entity_id: light.the_cook
+        state: "off"
+      - condition: or
+        conditions:
+          - after: sunset
+            after_offset: -0:30:00
+            condition: sun
+          - before: sunrise
+            before_offset: -0:30:00
+            condition: sun
+      # - condition: or
+      #   conditions:
+      #     - condition: numeric_state
+      #       entity_id: sensor.dark_sky_precip_intensity
+      #       above: 0.1
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.the_cook
+
+  # Kitchen Lights Off
+  - id: fedc833afc994b75ba2f6dffd362e3d4
+    initial_state: on
+    alias: Kitchen Movement (Lights Off)
+    trigger:
+      - entity_id: binary_sensor.kitchen_motion
+        for:
+          minutes: 3
+        from: "on"
+        platform: state
+        to: "off"
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.the_cook

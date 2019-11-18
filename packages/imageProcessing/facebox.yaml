@@ -1,0 +1,114 @@
+## Image Processing
+image_processing:
+    - platform: facebox
+      ip_address: !secret facebox_host
+      port: !secret facebox_port
+      username: !secret facebox_username
+      password: !secret facebox_password
+      scan_interval: 10000
+      source:
+          - entity_id: camera.office_cam1
+            name: OfficeCam1
+          - entity_id: camera.kitchen_cam2
+            name: KitchenCam2
+          - entity_id: camera.racamera1
+            name: RaCamera1
+          - entity_id: camera.kimmycamera1
+            name: Kimmy Camera 1
+          - entity_id: camera.kimmycamera2
+            name: Kimmy Camera 2
+          - entity_id: camera.camera2
+            name: Build Plate Camera
+          - entity_id: camera.cat_area_cam3
+            name: Cat Area Camera 3
+          - entity_id: camera.living_room_cam4
+            name: Living Room Camera 4
+notify:
+    - name: Face Detection Activity Log
+      platform: file
+      filename: "/config/logs/faceActivity.txt"
+    - name: Face Detection Notify Group
+      platform: group
+      services:
+          - service: face_detection_activity_log
+          - service: mobile_app_daves_iphone_xr
+
+## Template Sensors
+sensor:
+    # Last Face Detection Activity
+    - platform: file
+      name: Last Face Detection Activity
+      file_path: "/config/logs/faceActivity.txt"
+
+    # Build Plate Face Detection
+    - platform: template
+      sensors:
+          build_plate_facebox_detection:
+              friendly_name: "Build Plate Facebox Detection"
+              value_template: '{% if state_attr("image_processing.build_plate_camera","faces") %}{{ state_attr("image_processing.build_plate_camera","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+
+    # Kimmy Camera 1 (Basement) Face Detection
+    - platform: template
+      sensors:
+          kimmy_camera_1_facebox_detection:
+              friendly_name: "Kimmy Camera 1 Facebox Detection"
+              value_template: '{% if state_attr("image_processing.kimmy_camera_1","faces") %}{{ state_attr("image_processing.kimmy_camera_1","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+
+    # Kimmy Camera 2 (Basement) Face Detection
+    - platform: template
+      sensors:
+          kimmy_camera_2_facebox_detection:
+              friendly_name: "Kimmy Camera 2 Facebox Detection"
+              value_template: '{% if state_attr("image_processing.kimmy_camera_2","faces") %}{{ state_attr("image_processing.kimmy_camera_2","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+
+    # Kitchen Camera 2 Face Detection
+    - platform: template
+      sensors:
+          kitchen_camera_2_facebox_detection:
+              friendly_name: "Kitchem Camera 2 Facebox Detection"
+              value_template: '{% if state_attr("image_processing.kitchencam2","faces") %}{{ state_attr("image_processing.kitchencam2","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+
+    # Office Camera 1 Face Detection
+    - platform: template
+      sensors:
+          office_camera_1_facebox_detection:
+              friendly_name: "Office Camera 1 Facebox Detection"
+              value_template: '{% if state_attr("image_processing.officecam1","faces") %}{{ state_attr("image_processing.officecam1","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+
+    # Ra Camera 1 (Office) Face Detection
+    - platform: template
+      sensors:
+          ra_camera_1_facebox_detection:
+              friendly_name: "Ra Camera 1 Facebox Detection"
+              value_template: '{% if state_attr("image_processing.racamera1","faces") %}{{ state_attr("image_processing.racamera1","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+
+    # Ra Camera 1 (Office) Face Detection
+    - platform: template
+      sensors:
+          cat_area_camera_3_facebox_detection:
+              friendly_name: "Cat Area Camera 3 Facebox Detection"
+              value_template: '{% if state_attr("image_processing.cat_area_camera_3","faces") %}{{ state_attr("image_processing.cat_area_camera_3","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+    # Living Room Camera 4
+    - platform: template
+      sensors:
+          living_room_facebox_detection:
+              friendly_name: "Living Room Facebox Detection"
+              value_template: '{% if state_attr("image_processing.living_room_camera_4","faces") %}{{ state_attr("image_processing.living_room_camera_4","faces")[0]["name"] }}{% else %}unknown{% endif %}'
+## Last Image Cameras
+camera:
+    ## Last Motion Captures (Part of Automation)
+    - platform: local_file
+      name: Office Last Motion Still
+      file_path: !secret office_file_name
+    - platform: local_file
+      name: Kitchen Last Motion Still
+      file_path: !secret kitchen_file_name
+    - platform: local_file
+      name: Basement Last Motion Still
+      file_path: !secret basement_file_name
+    - platform: local_file
+      name: Cat Area Last Motion Still
+      file_path: !secret cat_area_file_name
+    - platform: local_file
+      name: Living Room Last Motion Still
+      file_path: !secret livingroom_file_name
