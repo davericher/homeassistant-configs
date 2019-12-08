@@ -35,25 +35,34 @@ discovery:
 ### Recorder ###
 recorder:
     db_url: !secret recorder_db
-    purge_keep_days: 7
+    purge_keep_days: 2
+    purge_interval: 1
+    exclude:
+        domains:
+            - automation
+            - weblink
+            - updater
+            # - sensor
+            # - binary_sensor
+            # - switch
+            - media_player
+            - light
+            - secene
+            - air_quality
+            - calendar
+            - camera
+            - device_tracker
+            - group
+            - image_processing
+            - input_boolean
+            - input_select
+            - weather
+            - zone
+            # - person
+            - event
 ### Calendars ###
 calendar:
     - platform: todoist
       token: !secret todoist
 # Shopping Lists
 shopping_list:
-# ios: !include ios.yaml
-# wemo:
-# climate:
-#   - platform: generic_thermostat
-#     name: Office
-#     heater: switch.office_ac_power
-#     target_sensor: sensor.office_temperature
-#     min_temp: 17
-#     max_temp: 30
-#     ac_mode: true
-#     precision: 1
-#     initial_operation_mode: "off"
-#     cold_tolerance: 0.5
-#     min_cycle_duration:
-#       minutes: 5

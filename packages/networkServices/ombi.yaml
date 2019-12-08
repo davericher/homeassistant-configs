@@ -1,5 +1,5 @@
-ombi:
-  api_key: !secret ombi_api_key
-  host: !secret ombi_api_host
-  username: !secret ombi_api_user
-  port: !secret ombi_api_port
+# ombi:
+#   api_key: !secret ombi_api_key
+#   host: !secret ombi_api_host
+#   username: !secret ombi_api_user
+#   port: !secret ombi_api_port

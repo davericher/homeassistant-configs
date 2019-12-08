@@ -2,6 +2,13 @@ automation:
     ## Office Facebox Announcement
     - alias: "Office Facebox Announcement"
       initial_state: on
+      condition:
+          condition: and
+          conditions:
+              - condition: template
+                value_template: "{{ not is_state('sensor.office_camera_1_facebox_detection', 'unknown') }}"
+              - condition: template
+                value_template: "{{ not is_state('sensor.office_camera_1_facebox_detection', 'none') }}"
       trigger:
           - platform: state
             entity_id: binary_sensor.office_motion
@@ -10,7 +17,6 @@ automation:
             entity_id: binary_sensor.ra_cam_1_motion
             to: "on"
       action:
-          - delay: 0:00:02
           - service: image_processing.scan
             entity_id: image_processing.officecam1
           - delay: 00:00:01
@@ -18,21 +24,20 @@ automation:
             data:
                 entity_id: camera.office_cam1
                 filename: !secret office_file_name
-          - delay: 00:00:02
-          - condition: and
-            conditions:
-                - condition: template
-                  value_template: "{{ not is_state('sensor.office_camera_1_facebox_detection', 'unknown') }}"
-                - condition: template
-                  value_template: "{{ not is_state('sensor.office_camera_1_facebox_detection', 'none') }}"
-          - delay: 00:00:02
+          - delay: 00:00:10
+          - service: notify.mobile_app_daves_iphone_xr
+            data:
+                message: Motion Detected in the Office
+                data:
+                    attachment:
+                        content-type: jpeg
+                    push:
+                        category: camera
+                    entity_id: camera.office_last_motion_still
           - service: notify.face_detection_activity_log
             data_template:
                 title: Office Face Detection
                 message: "{{ states('sensor.office_camera_1_facebox_detection') }} is in the Office"
-                data:
-                    photo:
-                        url: !secret office_cam_url
 
     ## Basement Facebox Announcement
     - alias: "Basement Facebox Announcement"

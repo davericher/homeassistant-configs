@@ -3,8 +3,8 @@ switch:
   - platform: command_line
     switches:
       twinkly:
-        command_on: "ssh irony@192.168.1.2 python3 /volumes/code/system/home-assistant-twinkly/twinkly.py 192.168.1.155 on"
-        command_off: "ssh irony@192.168.1.2 python3 /volumes/code/system/home-assistant-twinkly/twinkly.py 192.168.1.155 off"
-        command_state: "ssh irony@192.168.1.2 python3 /volumes/code/system/home-assistant-twinkly/twinkly.py 192.168.1.155 state"
+        command_on: "ssh irony@192.168.1.2 python3 /volumes/code/system/home-assistant-twinkly/twinkly.py 192.168.1.38 on"
+        command_off: "ssh irony@192.168.1.2 python3 /volumes/code/system/home-assistant-twinkly/twinkly.py 192.168.1.38 off"
+        command_state: "ssh irony@192.168.1.2 python3 /volumes/code/system/home-assistant-twinkly/twinkly.py 192.168.1.38 state"
         value_template: '{{ value == "1" }}'
         friendly_name: Twinkly
