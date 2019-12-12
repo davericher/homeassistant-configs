@@ -1,0 +1,20 @@
+switch:
+    ## Restart Home assistant
+    - platform: command_line
+      switches:
+        ## Restart Home Assistant via SSH
+        restart_home_assistant:
+            command_on: "ssh irony@192.168.1.5 docker service update --force home-stack_hass"
+            friendly_name: Restart Home Assistant
+        ## Restart DNS Masq via ssh
+        restart_dnsmasq:
+            command_on: "ssh irony@192.168.1.5 docker service update --force home-stack_dnsmasq"
+            friendly_name: Restart DNSMasq
+        ### Restart PLEX via SSH
+        restart_plex:
+            command_on: "ssh irony@192.168.1.5 docker service update --force home-stack_plex"
+            friendly_name: Restart Plex
+        ## Load update file
+        homestack_reload_config:
+            command_on: "ssh irony@192.168.1.5 -- 'cd /volumes/dockerConfs/composefiles/home-stack;./update.sh'"
+            friendly_name: Homestack Reload Config

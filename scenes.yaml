@@ -1,0 +1,101 @@
+- id: '1575832382956'
+  name: office_crazy
+  entities:
+    light.altair:
+      brightness: 238
+      effect: none
+      hs_color:
+      - 26.725
+      - 89.804
+      rgb_color:
+      - 255
+      - 128
+      - 25
+      state: 'on'
+      xy_color:
+      - 0.606
+      - 0.372
+    light.blaster:
+      brightness: 255
+      effect: None
+      hs_color:
+      - 29.882
+      - 100
+      rgb_color:
+      - 255
+      - 126
+      - 0
+      state: 'on'
+      xy_color:
+      - 0.614
+      - 0.373
+    light.lazer:
+      brightness: 146
+      effect: None
+      hs_color:
+      - 29.863
+      - 85.882
+      rgb_color:
+      - 255
+      - 145
+      - 36
+      state: 'on'
+      xy_color:
+      - 0.581
+      - 0.388
+    light.sirius:
+      brightness: 110
+      effect: none
+      hs_color:
+      - 26.725
+      - 89.804
+      rgb_color:
+      - 255
+      - 128
+      - 25
+      state: 'on'
+      xy_color:
+      - 0.606
+      - 0.372
+    light.spectrum:
+      brightness: 93
+      effect: None
+      hs_color:
+      - 29.882
+      - 100
+      rgb_color:
+      - 255
+      - 126
+      - 0
+      state: 'on'
+      xy_color:
+      - 0.614
+      - 0.373
+    light.square1_status_led:
+      brightness: 96
+      effect: Flicker
+      hs_color:
+      - 29.882
+      - 100
+      rgb_color:
+      - 255
+      - 126
+      - 0
+      state: 'on'
+      xy_color:
+      - 0.614
+      - 0.373
+    light.vega:
+      brightness: 65
+      effect: none
+      hs_color:
+      - 26.725
+      - 89.804
+      rgb_color:
+      - 255
+      - 128
+      - 25
+      state: 'on'
+      xy_color:
+      - 0.606
+      - 0.372

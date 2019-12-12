@@ -61,8 +61,8 @@ recorder:
             # - person
             - event
 ### Calendars ###
-calendar:
-    - platform: todoist
-      token: !secret todoist
+#calendar:
+#    - platform: todoist
+#      token: !secret todoist
 # Shopping Lists
 shopping_list:

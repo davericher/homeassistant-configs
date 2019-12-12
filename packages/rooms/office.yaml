@@ -14,6 +14,7 @@ input_select:
             - office_forest
             - office_somber
             - office_vaporwave
+            - office_crazy
         initial: office_relax
         icon: mdi:palette
 
@@ -61,11 +62,11 @@ switch:
     - platform: wake_on_lan
       name: "Wake Set"
       host: 192.168.1.10
-      mac_address: "38-D5-47-AB-B0-EA"
+      mac: "38-D5-47-AB-B0-EA"
     - platform: wake_on_lan
       name: "Wake Set Secondary"
       host: 192.168.1.11
-      mac_address: "38-D5-47-AB-B0-E9"
+      mac: "38-D5-47-AB-B0-E9"
 
     - platform: template
       switches:

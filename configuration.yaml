@@ -43,12 +43,13 @@ frontend:
     javascript_version: latest
 
 logger:
-    default: critical
-    logs:
-        aiohttp: fatal
-        homeassistant.core: fatal
-        homeassistant.components.http.ban: fatal
-        homeassistant.components.http: fatal
+     default: info
+#    default: critical
+#    logs:
+#        aiohttp: fatal
+#        homeassistant.core: fatal
+#        homeassistant.components.http.ban: fatal
+#        homeassistant.components.http: fatal
 ######### CUSTOM COMPONENTS #############
 # Home Assistant Community Store
 hacs:
@@ -66,4 +67,4 @@ breaking_changes:
 #    kayla:
 #      username: !secret spotify_dave_username
 #      password: !secret spotify_kayla_password
-
+scene: !include scenes.yaml

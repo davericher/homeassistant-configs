@@ -67,7 +67,7 @@ automation:
                         content-type: jpeg
                     push:
                         category: camera
-                    eneity_id: camera.camera2
+                    entity_id: camera.camera2
           # Publish MQTT Message
           - service: mqtt.publish
             data_template:
