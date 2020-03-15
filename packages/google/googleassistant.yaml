@@ -2,7 +2,8 @@
 google_assistant:
   project_id: !secret google_assistant_project_id
   expose_by_default: false
-  api_key: !secret google_travel
+  service_account: !include account.json
+  report_state: true
   exposed_domains:
     - switch
     - scene

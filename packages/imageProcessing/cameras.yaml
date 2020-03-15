@@ -21,6 +21,12 @@ camera:
       still_image_url: !secret kimmy_camera2_jpeg_still
     # Highways
     - platform: generic
+      name: Hwy 417 near Parkdale
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc05.jpg"
+    - platform: generic
+      name: Hwy 417 near Churchill
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc07.jpg"
+    - platform: generic
       name: Hwy 417 near Pinecrest Rd
       still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc09.jpg"
     - platform: generic
@@ -29,6 +35,121 @@ camera:
     - platform: generic
       name: Hwy 417 near Woodroffe Ave
       still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc08.jpg"
+    - platform: generic
+      name: Hwy 417 near Richmond
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc11.jpg"
+    - platform: generic
+      name: Walkey
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc14.jpg"
+    - platform: generic
+      name: Innes
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc15.jpg"
+    - platform: generic
+      name: Aviation 1
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc16.jpg"
+    - platform: generic
+      name: Aviation 2
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc17.jpg"
+    - platform: generic
+      name: St. Laurent
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc18.jpg"
+    - platform: generic
+      name: Belfast
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc19.jpg"
+    - platform: generic
+      name: Riverside
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc20.jpg"
+    - platform: generic
+      name: Nicholas
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc21.jpg"
+    - platform: generic
+      name: O. Connor
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc22.jpg"
+    - platform: generic
+      name: Bronson
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc23.jpg"
+    - platform: generic
+      name: Holly Acres
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc24.jpg"
+    - platform: generic
+      name: Hwy 416 at Hwy 417
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc25.jpg"
+    - platform: generic
+      name: Bells Corners
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc26.jpg"
+    - platform: generic
+      name: Moodie Drive
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc27.jpg"
+    - platform: generic
+      name: Moodie at Hill E
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc28.jpg"
+    - platform: generic
+      name: Moodie at Hill W
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc29.jpg"
+    - platform: generic
+      name: Eagleson
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc30.jpg"
+    - platform: generic
+      name: Kanata Ave
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc31.jpg"
+    - platform: generic
+      name: Terry Fox
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc32.jpg"
+    - platform: generic
+      name: Palladium
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc33.jpg"
+    - platform: generic
+      name: Carp Road
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc34.jpg"
+    - platform: generic
+      name: Hwy 7 at Hwy 417
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc35.jpg"
+    - platform: generic
+      name:  Bays Water
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc37.jpg"
+    - platform: generic
+      name: 401 E at Hwy 137
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc41.jpg"
+    - platform: generic
+      name: 401 at 137
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc42.jpg"
+    - platform: generic
+      name: 401 E at Reynolds
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc43.jpg"
+    - platform: generic
+      name: 137 TIP
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc44.jpg"
+    - platform: generic
+      name: Montreal
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc51.jpg"
+    - platform: generic
+      name: Division
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc52.jpg"
+    - platform: generic
+      name: Sydenham
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc53.jpg"
+    - platform: generic
+      name: Gar-Diners
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc54.jpg"
+    - platform: generic
+      name: Barrack St. Dock
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc56.jpg"
+    - platform: generic
+      name: Marys Ville
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc57.jpg"
+    - platform: generic
+      name: Main St. Rd 96
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc58.jpg"
+    - platform: generic
+      name: Dawson PT. Road 1
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc59.jpg"
+    - platform: generic
+      name: Dawson Point W
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc60.jpg"
+    - platform: generic
+      name: Dawson PT. Road 2
+      still_image_url: "http://www.mto.gov.on.ca/english/traveller/compass/camera/pictures/OttaCamera/loc62.jpg"
+
 
 # Reset The ESP Cameras every 4 hours
 automation:
@@ -59,3 +180,4 @@ binary_sensor:
               friendly_name: "Ra Cam1 Motion"
               value_template: '{{states("input_boolean.racam1motion")}}'
               device_class: motion
+

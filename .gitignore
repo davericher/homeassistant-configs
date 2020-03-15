@@ -1,4 +1,5 @@
-
+packages/google/account.json
+service.json
 # Logs
 logs
 *.log

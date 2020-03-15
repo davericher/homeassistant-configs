@@ -11,4 +11,4 @@ media_player:
       9183abas000: "Bed Room"
   - platform: songpal
     name: Sony Soundbar
-    endpoint: http://192.168.1.171:10000/sony
+    endpoint: http://192.168.1.51:10000/sony

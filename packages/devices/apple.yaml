@@ -1,9 +1,5 @@
 # Home Kit
 homekit:
-  filter:
-    include_domains:
-      - light
-      - media_player
 device_tracker:
   # ICloud Account
   - platform: icloud

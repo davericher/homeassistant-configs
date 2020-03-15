@@ -1,0 +1,21 @@
+sensor:
+  - platform: rest
+    name: mrnodebot coronavirus
+    json_attributes:
+      - data
+    resource: 'https://bot.fsociety.online/api/coronavirus-rt?country=Canada&city=Ontario'
+    value_template: 'OK'
+  - platform: template
+    sensors:
+      coronavirus_ontario_confirmed:
+        friendly_name: 'Coronavirus Ontario Confirmed'
+        value_template: '{{ states.sensor.mrnodebot_coronavirus.attributes["data"]["confirmed"]["current"]["value"] }}'
+      coronavirus_ontario_recovered:
+        friendly_name: 'Coronavirus Ontario Recovered'
+        value_template: '{{ states.sensor.mrnodebot_coronavirus.attributes["data"]["cured"]["current"]["value"] }}'
+      coronavirus_ontario_dead:
+        friendly_name: 'Coronavirus Ontario Dead'
+        value_template: '{{ states.sensor.mrnodebot_coronavirus.attributes["data"]["dead"]["current"]["value"] }}'
+      coronavirus_ontario_last_date:
+        friendly_name: 'Coronavirus Ontario Last Date'
+        value_template: '{{ states.sensor.mrnodebot_coronavirus.attributes["data"]["lastDate"] }}'
