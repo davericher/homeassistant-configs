@@ -7,7 +7,6 @@ group:
   # Staircase Motion Group
   staircaseMotionGroup:
     name: Staircase Motion Group
-    control: hidden
     entities:
       - binary_sensor.staircase_motion
       - binary_sensor.staircase_motion2
